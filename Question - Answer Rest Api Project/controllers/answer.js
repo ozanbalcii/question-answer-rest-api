@@ -23,8 +23,7 @@ const addNewAnswerToQuestion = asyncErrorWrapper(async (req, res, next) => {
 
 const getAllAnswersByQuestion = asyncErrorWrapper(async (req, res, next) => { 
     const { question_id} = req.params;
-
-    //* populate("answers"); : answers'ın referans ettiği yer Answers. populate ile birlikte sadece id'leri değil tüm bilgileri(like, conetent, question gibi) getirecek.
+    
     const question = await Question.findById(question_id).populate("answers"); 
 
     const answers = question.answers;
@@ -41,11 +40,9 @@ const getSingleAnswer = asyncErrorWrapper(async (req, res, next) => {
     const { answer_id } = req.params;
     const answer = await Answer
     .findById(answer_id)
-    .populate({      //*populate ile tüm bilgileri getirityorduk ama altta ayarlar ile istediğimiz bilgiyi getiriyoruz.
-        //* ÖNEMLİ: POPULATE İLE İD BİLGİSİ HER ZAMAN GELMEKTEDİR.
+    .populate({         
         path : "question",
-        select :"title"  
-        
+        select :"title"     
     })  
     .populate({
         path : "user",
@@ -116,13 +113,10 @@ const likeAnswer = asyncErrorWrapper(async (req, res, next) => {
     });
 });
 
-
-
 const undoLikeAnswer = asyncErrorWrapper(async (req, res, next) => { 
     const {answer_id} =  req.params;
     const answer = await Answer.findById(answer_id); 
 
- 
     if(!answer.likes.includes(req.user.id)){ 
         return next(
             new CustomError("You cannot undo like operation for this answer.",400)
