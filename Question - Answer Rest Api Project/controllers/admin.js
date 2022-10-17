@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 const blockUser = asyncErrorWrapper(async (req, res, next) => {
 
-    const { id } = req.params; // id a
+    const { id } = req.params; // id 
 
     const user =  await User.findById(id);
 
