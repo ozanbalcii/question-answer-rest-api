@@ -24,7 +24,7 @@ const register = asyncErrorWrapper(async (req, res, next) => {
             role
          });
          sendJwtToClient(user, res); 
-        //*token olusturma: burda yapmamızın sebebi user information'nın(id ve neme) belli olmasıdır:   
+       
 });
 
 const login =  asyncErrorWrapper(async (req, res, next) => {      
@@ -110,8 +110,6 @@ const imageUpload = asyncErrorWrapper(async (req, res, next) => {
         <p> This <a href='${resetPasswordUrl}' target= '_blank'>link</a> will expire in 1 hour </p>
     `;
 
-
-    //*merkezi errorhandler kullanmamızınve kendimizin error yakalmasının nedeni, passwordToken ve resetPassowrdExpire'ı undefined yapmamız lazım, bunu merkezide yapamıyoruz.
     try{
         await sendMail({ //*async function oldugu için sendMail await ile beklememiz gerekiyor
             
