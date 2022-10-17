@@ -111,7 +111,7 @@ const imageUpload = asyncErrorWrapper(async (req, res, next) => {
     `;
 
     try{
-        await sendMail({ //*async function oldugu için sendMail await ile beklememiz gerekiyor
+        await sendMail({ 
             
             
             from : process.env.SMTP_USER,
