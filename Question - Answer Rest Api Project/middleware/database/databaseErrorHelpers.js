@@ -1,6 +1,3 @@
-
-
-
 const User = require("../../models/User");
 const CustomError = require('../../helpers/error/CustomError'); 
 const Question = require('../../models/Question');
@@ -50,30 +47,3 @@ module.exports =  {
     checkQuestionExist,
     checkQuestionAndAnswerExist
 };
-   
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
