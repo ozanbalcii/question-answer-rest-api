@@ -2,9 +2,6 @@
 const multer = require("multer");
 const path = require("path");
 const CustomError = require("../../helpers/error/CustomError");
-
-
-
 const storage = multer.diskStorage({
 
     destination: function(req, file, cb){  
@@ -28,21 +25,8 @@ const fileFilter =(req, file, cb) => {
         return cb(new CustomError("Please provide a valid image type",400),false); 
     }
     return cb(null,true); // true
-
 };
 
 const profileImageUpload = multer({storage, fileFilter}) 
 
 module.exports = profileImageUpload;
-
-
-
-
-
-
-
-
-
-
-
-
